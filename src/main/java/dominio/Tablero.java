@@ -48,7 +48,50 @@ public class Tablero {
         calcularEstadoSiguiente();
     }
 
+    public void transitarAlEstadoSiguiente(){
+        estadoActual = estadoSiguiente;
+        calcularEstadoSiguiente();
+    }
 
+    public void calcularEstadoSiguiente() {
+        for (int i = 0; i < DIMENSION; i++) {
+            for (int j = 0; j < DIMENSION; j++) {
+                estadoSiguiente[i][j] = recinto(i, j) > 2 ? 1 : 0;
+            }
+        }
+    }
+
+    private int recinto(int i, int j) {
+        int resultado = 0;
+        for (int k = i - 1; k <= i + 1; k++) {
+            for (int l = j - 1; l <= j + 1; l++) {
+                if (k >= 0 && k < DIMENSION && l >= 0 && l < DIMENSION) {
+                    resultado += estadoActual[k][l];
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public void generarEstadoActualPorMontecarlo(){
+        for (int i = 0; i < DIMENSION; i++) {
+            for (int j = 0; j < DIMENSION; j++) {
+                estadoActual[i][j] = (int) (Math.random() * 2);
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        String resultado = "";
+        for (int i = 0; i < DIMENSION; i++) {
+            for (int j = 0; j < DIMENSION; j++) {
+                resultado += (estadoActual[i][j] == 1 ? "*" : " ") + " ";
+            }
+            resultado += "\n";
+        }
+        return resultado;
+    }
 
     public static void main(String[] args) {
         Tablero tablero = new Tablero();
