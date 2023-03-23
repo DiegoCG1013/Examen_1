@@ -92,10 +92,4 @@ public class Tablero {
         }
         return resultado;
     }
-
-    public static void main(String[] args) {
-        Tablero tablero = new Tablero();
-        tablero.leerEstadoActual();
-
-    }
 }
