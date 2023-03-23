@@ -15,5 +15,6 @@ public class Matematicas {
         }catch (Exception e){
             System.out.println("No has introducido un numero válido");
         }
+        return 0;
     }
 }
